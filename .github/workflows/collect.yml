@@ -45,12 +45,3 @@ jobs:
           name: compliance-database
           path: compliance_data.db
           retention-days: 90
-
-      - name: Commit and push database (optional)
-        if: github.ref == 'refs/heads/master'
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add compliance_data.db
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update compliance data - $(date +'%Y-%m-%d %H:%M UTC')" && git push)
-        continue-on-error: true
