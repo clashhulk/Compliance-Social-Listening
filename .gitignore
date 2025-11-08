@@ -27,10 +27,10 @@ wheels/
 .env
 .env.local
 
-# Database
-*.db
-*.sqlite
-*.sqlite3
+# Database (but allow compliance_data.db for deployment)
+# *.db
+# *.sqlite
+# *.sqlite3
 
 # IDE
 .vscode/
