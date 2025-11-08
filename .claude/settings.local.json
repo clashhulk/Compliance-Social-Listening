@@ -8,7 +8,10 @@
       "Bash(pip install:*)",
       "Bash(python -m streamlit:*)",
       "Bash(copy .env.example .env)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)"
     ],
     "deny": [],
     "ask": []

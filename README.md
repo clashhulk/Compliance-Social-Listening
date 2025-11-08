@@ -11,34 +11,15 @@ A lightweight web app to track and visualize compliance-related discussions from
 
 ## Quick Start
 
-### 1. Install dependencies
+See [QUICKSTART.md](QUICKSTART.md) for detailed setup instructions.
 
+**TL;DR:**
 ```bash
 pip install -r requirements.txt
-```
-
-### 2. Set up Reddit API credentials
-
-1. Go to https://www.reddit.com/prefs/apps
-2. Create a new app (select "script" type)
-3. Copy `.env.example` to `.env`
-4. Fill in your credentials in `.env`
-
-### 3. Run initial data collection
-
-```bash
+# Add Reddit credentials to .env
 python collect.py
+python -m streamlit run app.py
 ```
-
-This will create a `compliance_data.db` SQLite database with the collected posts.
-
-### 4. Launch the dashboard
-
-```bash
-streamlit run app.py
-```
-
-The dashboard will open in your browser at http://localhost:8501
 
 ## Dashboard Features
 
@@ -67,28 +48,16 @@ The `.github/workflows/collect.yml` runs the collector every 6 hours automatical
 - **Scheduling**: GitHub Actions
 - **Hosting**: Streamlit Community Cloud
 
-## File Structure
+## Documentation
 
-```
-.
-├── app.py                  # Streamlit dashboard
-├── collect.py              # Data collection orchestrator
-├── src/
-│   ├── database.py        # SQLite schema and utilities
-│   ├── reddit_collector.py # Reddit data collection
-│   ├── rss_collector.py   # RSS feed collection
-│   └── tagger.py          # Content tagging logic
-├── requirements.txt
-├── .env.example
-└── README.md
-```
+- **[QUICKSTART.md](QUICKSTART.md)** - 5-minute setup guide
+- **[USAGE.md](USAGE.md)** - How to use the dashboard effectively
 
-## Success Metrics (MVP Goals)
+## Data Sources
 
-- ≥150 relevant items in 14 days
-- ≥40% tagged with pain indicators
-- Visible spikes near filing dates
-- Reliable 6-hour collection cadence
+- **Reddit**: r/IndiaTax, r/IndiaStartups
+- **TaxGuru**: Tax news and compliance updates
+- **Income Tax India**: Official government updates
 
 ## License
 
