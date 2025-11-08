@@ -25,7 +25,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Download existing database
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: compliance-database
           path: .
@@ -40,14 +40,14 @@ jobs:
           python collect.py
 
       - name: Upload database artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: compliance-database
           path: compliance_data.db
           retention-days: 90
 
       - name: Commit and push database (optional)
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
