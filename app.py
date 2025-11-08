@@ -58,9 +58,13 @@ with st.sidebar:
 
     # Source filter
     st.subheader("Source")
+    # Get available sources from database dynamically
+    all_posts = get_posts()
+    available_sources = sorted(set(p['source'] for p in all_posts)) if all_posts else []
+    source_options = ["All"] + available_sources
     source_filter = st.selectbox(
         "Select source",
-        options=["All", "Reddit", "GSTN News", "CAClubIndia Tax"]
+        options=source_options
     )
 
     # Tag filter
@@ -102,7 +106,7 @@ posts = load_data(start_date, end_date, source_filter)
 # Convert to DataFrame
 if posts:
     df = pd.DataFrame(posts)
-    df['created_at'] = pd.to_datetime(df['created_at'])
+    df['created_at'] = pd.to_datetime(df['created_at'], format='mixed', errors='coerce')
     df['date'] = df['created_at'].dt.date
 
     # Apply tag filter
