@@ -14,7 +14,8 @@ from .database import insert_post, post_exists
 # RSS feeds to monitor
 RSS_FEEDS = {
     'TaxGuru': 'https://taxguru.in/feed',
-    'Income Tax India': 'https://incometaxindia.gov.in/_layouts/15/Dit/Pages/Rss.aspx?List=Latest+Tax+Updates'
+    'Income Tax India': 'https://incometaxindia.gov.in/_layouts/15/Dit/Pages/Rss.aspx?List=Latest+Tax+Updates',
+    'SEBI': 'https://www.sebi.gov.in/sebirss.xml'
 }
 
 
@@ -82,6 +83,24 @@ def collect_from_feed(
 
             # Tag the content
             tags = tag_content(title, summary)
+
+            # Add SEBI-specific tags based on URL path
+            if feed_name == 'SEBI':
+                tags.append('SEBI')  # Always tag SEBI posts with SEBI
+                # Add document type tags based on URL path
+                link_lower = link.lower()
+                if '/press-releases/' in link_lower or '/media-and-notifications/press-releases/' in link_lower:
+                    tags.append('PressRelease')
+                elif '/circulars/' in link_lower or '/legal/circulars/' in link_lower:
+                    tags.append('Circular')
+                elif '/orders/' in link_lower or '/legal/orders/' in link_lower or '/enforcement/orders/' in link_lower:
+                    tags.append('Order')
+                elif '/regulations/' in link_lower or '/legal/regulations/' in link_lower:
+                    tags.append('Regulation')
+                elif '/enforcement/' in link_lower:
+                    tags.append('Enforcement')
+                # Remove duplicates and sort
+                tags = sorted(list(set(tags)))
 
             # Extract author
             author = entry.get('author', feed_name)

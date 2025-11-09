@@ -4,7 +4,7 @@ A lightweight web app to track and visualize compliance-related discussions from
 
 ## What it does
 
-- Collects recent posts from Reddit (r/IndiaTax, r/IndiaStartups) and RSS feeds (TaxGuru, Income Tax India)
+- Collects recent posts from Reddit (r/IndiaTax, r/IndiaStartups) and RSS feeds (TaxGuru, Income Tax India, SEBI)
 - Tags content by topic (GST, IncomeTax, TDS, etc.) and pain signals (PortalIssues, Deadlines, Negative sentiment)
 - Shows a simple dashboard with trends, top tags, and searchable/filterable posts
 - Auto-updates every 6 hours via GitHub Actions
@@ -68,9 +68,10 @@ python -m streamlit run app.py  # Run dashboard
 
 ## Data Sources
 
-- **Reddit**: r/IndiaTax, r/IndiaStartups
+- **Reddit**: r/IndiaTax, r/IndiaStartups (user discussions and pain points)
 - **TaxGuru**: Tax news and compliance updates
-- **Income Tax India**: Official government updates
+- **Income Tax India**: Official Income Tax Department updates
+- **SEBI**: Securities and Exchange Board of India - Press releases, circulars, orders, regulations, enforcement actions
 
 ## License
 
