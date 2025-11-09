@@ -22,16 +22,16 @@ def main():
     init_db()
     print("Database ready.\n")
 
-    # Collect from Reddit
+    # Collect from Reddit (6 months = 180 days, more posts per subreddit)
     try:
-        reddit_stats = collect_reddit_posts(days_back=14, limit_per_sub=100)
+        reddit_stats = collect_reddit_posts(days_back=180, limit_per_sub=1000)
     except Exception as e:
         print(f"Reddit collection failed: {e}")
         reddit_stats = {'total_new': 0, 'total_skipped': 0, 'total_processed': 0}
 
-    # Collect from RSS feeds
+    # Collect from RSS feeds (6 months = 180 days)
     try:
-        rss_stats = collect_rss_feeds(days_back=14)
+        rss_stats = collect_rss_feeds(days_back=180)
     except Exception as e:
         print(f"RSS collection failed: {e}")
         rss_stats = {'total_new': 0, 'total_skipped': 0, 'total_processed': 0}
