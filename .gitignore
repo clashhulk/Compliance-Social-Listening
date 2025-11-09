@@ -27,10 +27,11 @@ wheels/
 .env
 .env.local
 
-# Database
-*.db
-*.sqlite
-*.sqlite3
+# Database (allow compliance_data.db for Streamlit deployment)
+# Note: For Streamlit Cloud, the database must be in git since it can't access GitHub Artifacts
+# *.db
+# *.sqlite
+# *.sqlite3
 
 # IDE
 .vscode/
